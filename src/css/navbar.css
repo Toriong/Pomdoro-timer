@@ -22,7 +22,7 @@
 
 .navbarSubContainer {
     display: flex;
-justify-content: space-between;
+    justify-content: space-between;
     width: 100%;
     max-width: 2560px;
     min-width: 280px;
