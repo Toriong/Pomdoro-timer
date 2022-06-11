@@ -1,0 +1,47 @@
+.timerContainer{
+    height: 500px;
+}
+
+.timerContainer > section{
+    height: 40%;
+    display: grid;
+    place-items: center;
+}
+
+.timerContainer > section:last-child button{
+    background: green;
+    width: 20vw;
+    max-width: 240px;
+    height: 40px;
+    font-size: 20px;;
+    border-radius: 8px;;
+}
+
+.timerContainer > section:last-child{
+    display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.timerContainer>section > span{
+    font-size: 70px;;
+}
+
+#pauseAndResumeBtn{
+    background-color: red;
+}
+
+#pauseAndResumeBtn{
+    margin-right: 8px;
+}
+
+#resetBtn{
+    margin-left: 8px;
+}
+
+#resetBtn{
+    background-color: inherit;
+    border: var(--borderColor)
+}
+
+
