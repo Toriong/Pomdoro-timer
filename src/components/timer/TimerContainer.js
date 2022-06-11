@@ -26,7 +26,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
     : focusTime;
   const __breakTime = localStorage.getItem("breakTime")
     ? JSON.parse(localStorage.getItem("breakTime"))
-    : _breakTime;
+    : breakTime;
   const _countDownTime = isFocusTimerOn ? __focusTime : __breakTime;
   const [countDownTime, setCountDownTime] = useState(_countDownTime);
   const [currentTime, setCurrentTime] = useState(_countDownTime);
@@ -78,7 +78,6 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
       let interval = setInterval(() => {
         time = time - 1000;
         setCurrentTime(time);
-        console.log('I am running')
         setCountDownTime(time);
         if (time === -1000 || time < 0) {
           const message = isFocusTimerOn
@@ -106,6 +105,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
 
   const handleResetBtnClick = () => {
     clearInterval(intervalTimer);
+    setIntervalTimer(null);
     setDidTimerStart(false);
     setCountDownTime(_countDownTime);
     isTimerPaused && setIsTimerPaused(false);
