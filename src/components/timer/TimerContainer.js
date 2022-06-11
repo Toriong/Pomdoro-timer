@@ -48,6 +48,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
         : isAlarmOn;
       const _countDownTime = isFocusTimerOn ? __focusTime : __breakTime;
       if (didTimerStart) {
+        // if the user selected on timer type buttons and if the timer is running, then clear the interval that is keeping track of the time
         clearInterval(intervalTimer);
         setDidTimerStart(false);
         isTimerPaused && setIsTimerPaused(false);
@@ -58,9 +59,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
     }
   }, [isFocusTimerOn, breakTime, focusTime, isAlarmOn]);
 
-  const handleStartBtnClick = () => {
-    setDidTimerStart(true);
-  };
+  const handleStartBtnClick = () => { setDidTimerStart(true); };
 
   const handlePauseBtnClick = () => {
     clearInterval(intervalTimer);
@@ -88,7 +87,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
           setCountDownTime(_countDownTime);
           setCurrentTime(_countDownTime);
           clearInterval(interval);
-          setIsFocusTimerOn((isFocusTimerOn) => !isFocusTimerOn);
+          setIsFocusTimerOn(isFocusTimerOn => !isFocusTimerOn);
           setDidTimerStart(false);
           willResumePausedCount && setWillResumePausedCount(false);
         }
@@ -98,7 +97,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
   }, [didTimerStart, resumeCountToggled]);
 
   const handleResumeBtnClick = () => {
-    setResumeCountToggled((resumeCountToggled) => !resumeCountToggled);
+    setResumeCountToggled(resumeCountToggled => !resumeCountToggled);
     setIsTimerPaused(false);
     setWillResumePausedCount(true);
   };
@@ -107,7 +106,9 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
     clearInterval(intervalTimer);
     setIntervalTimer(null);
     setDidTimerStart(false);
+    // reset the time num of the timers back to their original time num value
     setCountDownTime(_countDownTime);
+    setCurrentTime(_countDownTime);
     isTimerPaused && setIsTimerPaused(false);
   };
 
