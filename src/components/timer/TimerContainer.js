@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { SettingsContext } from "../../providers/SettingsProvider";
 import Timer from "./Timer";
 import "../../css/timer/timerContainer.css";
+import { TimerContext } from "../../providers/TimerProvider";
 
 
 const bell = new Audio('http://soundbible.com/mp3/Store_Door_Chime-Mike_Koenig-570742973.mp3');
@@ -12,9 +13,11 @@ const bell = new Audio('http://soundbible.com/mp3/Store_Door_Chime-Mike_Koenig-5
 
 const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
   const { _focusTime, _breakTime, _isAlarmOn } = useContext(SettingsContext);
+  const { _intervalTimer } = useContext(TimerContext);
   const [focusTime,] = _focusTime;
   const [breakTime,] = _breakTime;
   const [isAlarmOn, setIsAlarmOn] = _isAlarmOn;
+  const [intervalTimer, setIntervalTimer] = _intervalTimer;
   const [didTimerStart, setDidTimerStart] = _didTimerStart;
   const [isTimerPaused, setIsTimerPaused] = useState(false);
   const [isFocusTimerOn, setIsFocusTimerOn] = _isFocusTimerOn;
@@ -29,7 +32,6 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
   const [currentTime, setCurrentTime] = useState(_countDownTime);
   const [didFirstRenderOccur, setDidFirstRenderOccur] = useState(false);
   const [willResumePausedCount, setWillResumePausedCount] = useState(false);
-  const [intervalTimer, setIntervalTimer] = useState(null);
 
   useEffect(() => {
     if (!didFirstRenderOccur) {
@@ -69,14 +71,14 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
 
   useEffect(() => {
     if (didTimerStart) {
-      console.log("willResumePausedCount: ", willResumePausedCount);
-      console.log("currentTime: ", currentTime);
       let time = willResumePausedCount
         ? JSON.parse(JSON.stringify(currentTime))
         : JSON.parse(JSON.stringify(_countDownTime));
+
       let interval = setInterval(() => {
         time = time - 1000;
         setCurrentTime(time);
+        console.log('I am running')
         setCountDownTime(time);
         if (time === -1000 || time < 0) {
           const message = isFocusTimerOn
@@ -108,6 +110,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
     setCountDownTime(_countDownTime);
     isTimerPaused && setIsTimerPaused(false);
   };
+
 
   return (
     <div className="timerContainer">

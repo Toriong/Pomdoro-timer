@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Timer = ({ countDownTime, isTimerPaused, currentTimerTime }) => {
 
   const convertMillisToMinutesAndSeconds = (millis) => {

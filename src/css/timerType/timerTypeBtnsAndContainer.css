@@ -4,6 +4,7 @@
     justify-content: center;
     place-items: center;
     padding-top: 48px;
+    min-width: 280px;
 }
 
 #timerTypeButtonContainer > button:first-child{

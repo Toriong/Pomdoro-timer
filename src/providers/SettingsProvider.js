@@ -10,6 +10,7 @@ export const SettingsProvider = props => {
     const [isAlarmOn, setIsAlarmOn] = useState(true);
 
 
+
     return (
         <SettingsContext.Provider
             value={{

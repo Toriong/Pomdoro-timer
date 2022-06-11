@@ -1,5 +1,6 @@
 .timerContainer{
     height: 500px;
+    min-width: 280px;;
 }
 
 .timerContainer > section{
@@ -15,6 +16,7 @@
     height: 40px;
     font-size: 20px;;
     border-radius: 8px;;
+    min-width: 80px;
 }
 
 .timerContainer > section:last-child{
@@ -31,6 +33,11 @@ align-items: center;
     background-color: red;
 }
 
+#resetBtn,
+#pauseAndResumeBtn{
+    min-width: 80px;
+}
+
 #pauseAndResumeBtn{
     margin-right: 8px;
 }
@@ -42,6 +49,12 @@ align-items: center;
 #resetBtn{
     background-color: inherit;
     border: var(--borderColor)
+}
+
+@media(max-width: 767px){
+    .settingsMenu>header{
+        padding-left: 0px;;
+    }
 }
 
 
